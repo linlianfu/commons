@@ -1,4 +1,4 @@
-package priv.llf.commons.interpect;
+package priv.llf.commons.intercept;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
