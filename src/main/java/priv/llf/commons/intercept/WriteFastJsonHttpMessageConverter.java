@@ -37,7 +37,7 @@ public class WriteFastJsonHttpMessageConverter extends FastJsonHttpMessageConver
 
 
         String test = JSON.toJSONString(jsonObject,getFeatures());
-        byte[] bytes =test.getBytes();
+        byte[] bytes =test.getBytes(getCharset());
         outputStream.write(bytes);
         outputStream.flush();
         outputStream.close();
