@@ -27,6 +27,7 @@ public class WrappedHandlerExceptionResolver extends DefaultHandlerExceptionReso
                                               HttpServletResponse response,
                                               Object handler,
                                               Exception ex) {
+        log.error("详细异常栈：",ex);
         if (handler instanceof HandlerMethod)
         {
             response.setStatus(500);
