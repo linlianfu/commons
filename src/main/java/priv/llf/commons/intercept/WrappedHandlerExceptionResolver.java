@@ -56,6 +56,9 @@ public class WrappedHandlerExceptionResolver extends DefaultHandlerExceptionReso
             }
 
             try {
+                //设置返回给客户端的数据格式为json格式，
+                // 否则默认为string，客户端需要手动调整为josn格式才方便查看
+                response.setContentType("application/json; charset=utf-8");
                 response.getWriter().write(jo.toJSONString());
             } catch (IOException e) {
                 e.printStackTrace();
