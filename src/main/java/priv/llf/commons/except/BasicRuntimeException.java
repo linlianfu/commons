@@ -3,10 +3,9 @@ package priv.llf.commons.except;
 import lombok.Data;
 
 /**
- * @Author: eleven
- * @Date: 2018/4/7 17:38
- * @Since: 1.0.0
- * @Description:
+ * @author: eleven
+ * @since: 2018/4/7 17:12
+ * @description:
  */
 @Data
 public class BasicRuntimeException extends RuntimeException{
