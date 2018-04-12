@@ -11,10 +11,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * @Author: eleven
- * @Date: 2018/4/7 17:38
- * @Since: 1.0.0
- * @Description:
+ * @author: eleven
+ * @since: 2018/4/7 17:12
+ * @description:
  */
 public class WriteFastJsonHttpMessageConverter extends FastJsonHttpMessageConverter {
 
