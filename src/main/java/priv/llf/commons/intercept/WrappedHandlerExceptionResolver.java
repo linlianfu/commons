@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Author: Eleven
- * @Since: 2018/4/7 17:12
- * @Description:
+ * @author: eleven
+ * @since: 2018/4/7 17:12
+ * @description:
  */
 @Slf4j
 public class WrappedHandlerExceptionResolver extends DefaultHandlerExceptionResolver {
