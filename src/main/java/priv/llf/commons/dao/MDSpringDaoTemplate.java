@@ -1,5 +1,6 @@
 package priv.llf.commons.dao;
 
+import com.mongodb.BasicDBObject;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import priv.llf.commons.IMongo;
 import priv.llf.mybatis.support.Page;
 
@@ -30,6 +32,19 @@ public class MDSpringDaoTemplate<T extends Serializable>  implements IMongo,Init
     MongoTemplate mt;
 
     private Class<T> entityClass;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
+        this.initEntityClassBean();//初始化实体bean
+
+    }
+
+    private void initEntityClassBean(){
+        entityClass =  (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+
     @Override
     public void save(Object entity) {
         this.mt.insert(entity);
@@ -89,15 +104,19 @@ public class MDSpringDaoTemplate<T extends Serializable>  implements IMongo,Init
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public int addElement(Query query, String fieldName, Object object) {
 
-        this.initEntityClassBean();//初始化实体bean
-
+        Update update = new Update();
+        update.addToSet(fieldName,object);
+        int result = this.getMt().upsert(query,update,entityClass).getN();
+        return result;
     }
 
-    private void initEntityClassBean(){
-        entityClass =  (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    @Override
+    public int deleteElement(Query query, String fieldName, BasicDBObject dbObject) {
+        Update update = new Update();
+        update.pull(fieldName,dbObject);
+        int result = this.getMt().updateFirst(query,update,entityClass).getN();
+        return result;
     }
-
-
 }

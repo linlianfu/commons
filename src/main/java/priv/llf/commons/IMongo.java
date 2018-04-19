@@ -1,6 +1,7 @@
 package priv.llf.commons;
 
 
+import com.mongodb.BasicDBObject;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.validation.annotation.Validated;
@@ -64,4 +65,21 @@ public interface IMongo extends IDao{
      * @param id
      */
     void deleteById(@NotBlank(message = "id不能为空") String id);
+
+    /**
+     * 为符合条件的数据的内嵌数组追加一个元素
+     * @param query
+     * @param fieldName
+     * @param object
+     * @return
+     */
+    int addElement(Query query,String fieldName,Object object);
+    /**
+     * 为符合条件的数据的内嵌数组删除一个元素
+     * @param query
+     * @param fieldName
+     * @param object
+     * @return
+     */
+    int deleteElement(Query query,String fieldName,BasicDBObject dbObject);
 }
