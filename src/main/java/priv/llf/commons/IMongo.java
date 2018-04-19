@@ -78,7 +78,7 @@ public interface IMongo extends IDao{
      * 为符合条件的数据的内嵌数组删除一个元素
      * @param query
      * @param fieldName
-     * @param object
+     * @param dbObject
      * @return
      */
     int deleteElement(Query query,String fieldName,BasicDBObject dbObject);
